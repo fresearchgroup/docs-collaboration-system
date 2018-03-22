@@ -24,7 +24,7 @@ The 'docs folder is where your documentation written in md files will reside'
 While creating the documentation keep the file name and id same.
 
 Set the path to your documentation in website/sidebars.json file
-Place your documentation file name in on of the available sidebar or your can create your own side in json format.
+Place your documentation file name in one of the available sidebar or you can create your own sidebars in json format.
 
 
 Check your site using following in the website folder -
