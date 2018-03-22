@@ -21,4 +21,4 @@ The “System for Collaborative Communities” is a medium for like minded peopl
 
 Collaborating Communities project is a web based application which allows users to create groups within the community, join group, add their content mainly articles or collated articles. User has an option to join different communities. He/She can be a member of multiple groups. Each group has different roles like author, publisher etc. Author of the group can submit content related to the group. The content submitted will be visible in that community. There can be versions of the same content. The content is published in the community only after published by the publisher. The published content can’t be deleted. The content can be plain text or text with videos, images and links.
 
-<img src="/collaboration-system/img/collab_desc.png">
+<img src="/docs-collaboration-system/img/collab_desc.png">
