@@ -1,0 +1,189 @@
+<html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Nginx Configuration · Collaboration System</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="Nginx Configuration · Collaboration System"/><meta property="og:type" content="website"/><meta property="og:url" content="https://fresearchgroup.github.io/docs-collaboration-system/docs-collaboration-system/index.html"/><meta property="og:description" content="## Web Server with Nginx and Gunicorn"/><link rel="shortcut icon" href="/docs-collaboration-system/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://fresearchgroup.github.io/docs-collaboration-system/blog/atom.xml" title="Collaboration System Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://fresearchgroup.github.io/docs-collaboration-system/blog/feed.xml" title="Collaboration System Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/docs-collaboration-system/css/main.css"/></head><body class="sideNavVisible"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/docs-collaboration-system/"><img class="logo" src="/docs-collaboration-system/img/docusaurus.svg"/><h2 class="headerTitle">Collaboration System</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li><a href="/docs-collaboration-system/docs/introduction.html" target="_self">Docs</a></li><li><a href="/docs-collaboration-system/blog" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Installation</span></h2></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Collab</h3><ul><li class="navListItem"><a class="navItem" href="/docs-collaboration-system/docs/introduction.html">Introduction</a></li></ul></div><div class="navGroup navGroupActive"><h3>Installation</h3><ul><li class="navListItem"><a class="navItem" href="/docs-collaboration-system/docs/mysql.html">Mysql Configuration</a></li><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/docs-collaboration-system/docs/nginx.html">Nginx Configuration</a></li><li class="navListItem"><a class="navItem" href="/docs-collaboration-system/docs/solr.html">Solr Configuration</a></li><li class="navListItem"><a class="navItem" href="/docs-collaboration-system/docs/loadbalancer.html">Load Balancer Configuration</a></li><li class="navListItem"><a class="navItem" href="/docs-collaboration-system/docs/nfs.html">NFS Configuration</a></li><li class="navListItem"><a class="navItem" href="/docs-collaboration-system/docs/cache.html">Memcache Configuration</a></li><li class="navListItem"><a class="navItem" href="/docs-collaboration-system/docs/configuration.html">Project Configuration</a></li></ul></div><div class="navGroup navGroupActive"><h3>Testing and Deployment</h3><ul><li class="navListItem"><a class="navItem" href="/docs-collaboration-system/docs/jenkins.html">Jenkins Set Up</a></li></ul></div></div></section></div><script>
+          var toggler = document.getElementById('navToggler');
+          var nav = document.getElementById('docsNav');
+          toggler.onclick = function() {
+            nav.classList.toggle('docsSliderActive');
+          };
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1>Nginx Configuration</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" name="web-server-with-nginx-and-gunicorn"></a><a href="#web-server-with-nginx-and-gunicorn" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Web Server with Nginx and Gunicorn</h2>
+<p>Install the needed Packages</p>
+<pre><code class="hljs css shell"><span class="hljs-meta">$</span><span class="bash"> sudo apt-get install nginx python3-dev libmysqlclient-dev</span>
+<span class="hljs-meta">$</span><span class="bash"> sudo apt-get install python3-dev libmysqlclient-dev</span>
+<span class="hljs-meta">$</span><span class="bash"> sudo apt-get -y install supervisor</span>
+<span class="hljs-meta">$</span><span class="bash"> sudo systemctl <span class="hljs-built_in">enable</span> supervisor</span>
+<span class="hljs-meta">$</span><span class="bash"> sudo systemctl start supervisor</span>
+<span class="hljs-meta">$</span><span class="bash"> sudo  apt-get install python3-pip</span>
+<span class="hljs-meta">$</span><span class="bash"> sudo pip3 install virtualenv</span>
+<span class="hljs-meta">$</span><span class="bash"> git <span class="hljs-built_in">clone</span> https://github.com/fresearchgroup/Collaboration-System.git</span>
+<span class="hljs-meta">$</span><span class="bash"> sudo mv Collaboration-System CollaborationSystem</span>
+<span class="hljs-meta">$</span><span class="bash"> virtualenv collab -p python3</span>
+<span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">source</span> collab/bin/activate</span>
+<span class="hljs-meta">$</span><span class="bash"> pip3 install -r CollaborationSystem/requirements.txt</span>
+<span class="hljs-meta">$</span><span class="bash"> django-admin --version      ( Check django version --  1.11.7)</span>
+<span class="hljs-meta">$</span><span class="bash"> pip3 install gunicorn</span>
+<span class="hljs-meta">$</span><span class="bash"> pip3 install psycopg2</span>
+
+
+</code></pre>
+<p>Define Static URL in project.
+Add the following line after STATIC_URL  (can be added anywhere in settings file)-</p>
+<pre><code class="hljs css shell"><span class="hljs-meta">$</span><span class="bash"> sudo nano CollaborationSystem/CollaborationSystem/settings.py</span>
+STATIC_ROOT = "/home/edx/static"
+
+cd CollaborationSystem
+<span class="hljs-meta">$</span><span class="bash"> python manage.py collectstatic</span>
+cd
+
+
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" name="configure-gunicorn"></a><a href="#configure-gunicorn" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configure Gunicorn -</h2>
+<p>Create a new file named gunicorn_start.bash inside /home/edx -</p>
+<pre><code class="hljs css shell"><span class="hljs-meta">$</span><span class="bash"> sudo nano gunicorn_start.bash</span>
+</code></pre>
+<p>And add the following to that file</p>
+<pre><code class="hljs"><span class="hljs-comment">#!/bin/bash</span>
+
+<span class="hljs-attribute">NAME</span>=<span class="hljs-string">"CollaborationSystem"</span>           # Name of the application
+<span class="hljs-attribute">DJANGODIR</span>=/home/edx/CollaborationSystem # Django project directory
+<span class="hljs-attribute">SOCKFILE</span>=/home/edx/run/gunicorn.sock     # we will communicte using this unix socket
+<span class="hljs-attribute">USER</span>=edx                                # the<span class="hljs-built_in"> user </span><span class="hljs-keyword">to</span> <span class="hljs-builtin-name">run</span> as
+<span class="hljs-attribute">GROUP</span>=edx                               # the<span class="hljs-built_in"> group </span><span class="hljs-keyword">to</span> <span class="hljs-builtin-name">run</span> as
+<span class="hljs-attribute">NUM_WORKERS</span>=3       # how many worker processes should Gunicorn spawn
+<span class="hljs-attribute">DJANGO_SETTINGS_MODULE</span>=CollaborationSystem.settings # which<span class="hljs-built_in"> settings </span>file should Django use
+<span class="hljs-attribute">DJANGO_WSGI_MODULE</span>=CollaborationSystem.wsgi  # WSGI module name
+echo <span class="hljs-string">"Starting <span class="hljs-variable">$NAME</span> as `whoami`"</span>
+
+<span class="hljs-comment"># Activate the virtual environment</span>
+
+cd <span class="hljs-variable">$DJANGODIR</span>
+source /home/edx/collab/bin/activate
+<span class="hljs-builtin-name">export</span> <span class="hljs-attribute">DJANGO_SETTINGS_MODULE</span>=<span class="hljs-variable">$DJANGO_SETTINGS_MODULE</span>
+<span class="hljs-builtin-name">export</span> <span class="hljs-attribute">PYTHONPATH</span>=<span class="hljs-variable">$DJANGODIR</span>:$PYTHONPATH
+
+<span class="hljs-comment"># Create the run directory if it doesn't exist</span>
+
+<span class="hljs-attribute">RUNDIR</span>=$(dirname <span class="hljs-variable">$SOCKFILE</span>)
+test -d <span class="hljs-variable">$RUNDIR</span> || mkdir -p <span class="hljs-variable">$RUNDIR</span>
+
+<span class="hljs-comment"># Start your Django Unicorn</span>
+<span class="hljs-comment"># Programs meant to be run under supervisor should not daemonize themselves (do not use --daemon)</span>
+
+exec gunicorn <span class="hljs-variable">${DJANGO_WSGI_MODULE}</span>:application \
+  --name <span class="hljs-variable">$NAME</span> \
+  --workers <span class="hljs-variable">$NUM_WORKERS</span> \
+  <span class="hljs-attribute">--user</span>=<span class="hljs-variable">$USER</span> <span class="hljs-attribute">--group</span>=<span class="hljs-variable">$GROUP</span> \
+  <span class="hljs-attribute">--bind</span>=unix:$SOCKFILE \
+  <span class="hljs-attribute">--log-level</span>=debug \
+  <span class="hljs-attribute">--log-file</span>=-
+
+</code></pre>
+<p>Start Gunicorn and execute</p>
+<pre><code class="hljs css shell"><span class="hljs-meta">$</span><span class="bash"> chmod u+x gunicorn_start.bash</span>
+<span class="hljs-meta">$</span><span class="bash"> mkdir run logs</span>
+<span class="hljs-meta">$</span><span class="bash"> touch logs/gunicorn.log</span>
+<span class="hljs-meta">$</span><span class="bash"> sudo nano /etc/supervisor/conf.d/edx.conf</span>
+
+</code></pre>
+<p>Add the following to edx.conf -</p>
+<pre><code class="hljs"><span class="hljs-section">[program:edx]</span>
+<span class="hljs-attr">command</span> = /home/edx/gunicorn_start.bash
+<span class="hljs-attr">user</span>=root
+<span class="hljs-attr">autostart</span>=<span class="hljs-literal">true</span>
+<span class="hljs-attr">autorestart</span>=<span class="hljs-literal">true</span>
+<span class="hljs-attr">redirect_stderr</span>=<span class="hljs-literal">true</span>
+<span class="hljs-attr">stdout_logfile</span>=/home/edx/logs/gunicorn.log
+<span class="hljs-attr">environment</span>=LANG=en_US.UTF-<span class="hljs-number">8</span>,LC_ALL=en_US.UTF-<span class="hljs-number">8</span>
+
+</code></pre>
+<p>Restart Services -</p>
+<pre><code class="hljs css shell"><span class="hljs-meta">$</span><span class="bash"> sudo systemctl restart supervisor</span>
+<span class="hljs-meta">$</span><span class="bash"> sudo systemctl <span class="hljs-built_in">enable</span> supervisor</span>
+<span class="hljs-meta">$</span><span class="bash"> sudo supervisorctl status edx</span>
+
+</code></pre>
+<p>Open the file gunicorn.service  -</p>
+<pre><code class="hljs css shell"><span class="hljs-meta">$</span><span class="bash"> sudo nano /etc/systemd/system/gunicorn.service</span>
+
+</code></pre>
+<p>Add the folllowing -</p>
+<pre><code class="hljs"><span class="hljs-section">[Unit]</span>
+<span class="hljs-attr">Description</span>=gunicorn daemon
+<span class="hljs-attr">After</span>=network.target
+<span class="hljs-section">
+[Service]</span>
+<span class="hljs-attr">User</span>=edx
+<span class="hljs-attr">Group</span>=www-data
+<span class="hljs-attr">WorkingDirectory</span>=/home/edx/CollaborationSystem
+<span class="hljs-attr">ExecStart</span>=/home/edx/collab/bin/gunicorn --access-logfile - --workers <span class="hljs-number">3</span> --bind unix:/home/edx/run/gunicorn.sock CollaborationSystem.wsgi:application
+<span class="hljs-section">
+[Install]</span>
+<span class="hljs-attr">WantedBy</span>=multi-user.target
+
+</code></pre>
+<p>Start Gunicorn -</p>
+<pre><code class="hljs css shell"><span class="hljs-meta">$</span><span class="bash"> sudo systemctl start gunicorn</span>
+<span class="hljs-meta">$</span><span class="bash"> sudo systemctl <span class="hljs-built_in">enable</span> gunicorn</span>
+<span class="hljs-meta">$</span><span class="bash"> sudo systemctl status gunicorn</span>
+
+</code></pre>
+<p>Add the following to edx.conf file and change the server_name ip address</p>
+<pre><code class="hljs css shell"><span class="hljs-meta">$</span><span class="bash"> sudo nano /etc/nginx/sites-available/edx.conf</span>
+
+</code></pre>
+<pre><code class="hljs"><span class="hljs-section">server</span> {
+    <span class="hljs-attribute">listen</span> <span class="hljs-number">80</span>;
+    <span class="hljs-attribute">server_name</span> <span class="hljs-number">10.129.26.188</span>;  <span class="hljs-comment"># here can also be the IP address of the server</span>
+
+    <span class="hljs-attribute">keepalive_timeout</span> <span class="hljs-number">5</span>;
+    <span class="hljs-attribute">proxy_connect_timeout</span> <span class="hljs-number">300s</span>;
+    <span class="hljs-attribute">proxy_read_timeout</span> <span class="hljs-number">300s</span>;
+
+    <span class="hljs-attribute">access_log</span> /home/edx/logs/nginx-access.log;
+    <span class="hljs-attribute">error_log</span> /home/edx/logs/nginx-<span class="hljs-literal">error</span>.log;
+
+    <span class="hljs-attribute">location</span> /static/ {
+       <span class="hljs-attribute">root</span> /home/edx;
+    }
+   <span class="hljs-attribute">location</span> /media/ {
+       <span class="hljs-attribute">root</span> /home/edx/CollaborationSystem;
+    }
+    <span class="hljs-attribute">location</span> / {
+        <span class="hljs-attribute">include</span> proxy_params;
+        <span class="hljs-attribute">proxy_pass</span> http://unix:/home/edx/run/gunicorn.sock;
+    }
+}
+
+</code></pre>
+<p>Create symbolic link and restart-</p>
+<pre><code class="hljs css shell"><span class="hljs-meta">$</span><span class="bash"> sudo ln -s /etc/nginx/sites-available/edx.conf /etc/nginx/sites-enabled/edx.conf</span>
+<span class="hljs-meta">$</span><span class="bash"> sudo nginx -t</span>
+<span class="hljs-meta">$</span><span class="bash"> sudo systemctl restart nginx</span>
+<span class="hljs-meta">$</span><span class="bash"> sudo ufw allow <span class="hljs-string">'Nginx Full'</span></span>
+<span class="hljs-meta">$</span><span class="bash"> sudo systemctl restart nginx</span>
+<span class="hljs-meta">$</span><span class="bash"> sudo supervisorctl restart edx</span>
+<span class="hljs-meta">$</span><span class="bash"> sudo service gunicorn restart</span>
+<span class="hljs-meta">$</span><span class="bash"> sudo service supervisor restart</span>
+
+</code></pre>
+<p>Create a .env inside CollaborationSystem and paste the following -</p>
+<pre><code class="hljs css shell"><span class="hljs-meta">$</span><span class="bash"> sudo nano CollaborationSystem/.env</span>
+</code></pre>
+<pre><code class="hljs"><span class="hljs-attr">SECRET_KEY</span>=myf0)*es+lr_3l0i5<span class="hljs-variable">$4</span>^)^fb&amp;<span class="hljs-number">4</span>rcf(m28zven+oxkd6!(<span class="hljs-number">6</span>gr*<span class="hljs-number">6</span>
+<span class="hljs-attr">DEBUG</span>=<span class="hljs-literal">True</span>
+<span class="hljs-attr">DB_NAME</span>=django
+<span class="hljs-attr">DB_USER</span>=root
+<span class="hljs-attr">DB_PASSWORD</span>=root
+<span class="hljs-attr">DB_HOST</span>=localhost
+<span class="hljs-attr">DB_PORT</span>=<span class="hljs-number">3306</span>
+<span class="hljs-attr">ALLOWED_HOSTS</span>= localhost, <span class="hljs-number">10.129</span>.<span class="hljs-number">132.103</span>
+<span class="hljs-attr">GOOGLE_RECAPTCHA_SECRET_KEY</span>=<span class="hljs-number">6</span>Lfsk0MUAAAAAFdhF-dAY-iTEpWaaCFWAc1tkqjK
+<span class="hljs-attr">EMAIL_HOST</span>=localhost
+<span class="hljs-attr">EMAIL_HOST_USER</span>=
+<span class="hljs-attr">EMAIL_HOST_PASSWORD</span>=
+<span class="hljs-attr">EMAIL_PORT</span>=<span class="hljs-number">25</span>
+<span class="hljs-attr">EMAIL_USE_TLS</span>=<span class="hljs-literal">False</span>
+<span class="hljs-attr">DEFAULT_FROM_EMAIL</span>=collaboratingcommunity@cse.iitb.ac.in
+<span class="hljs-attr">SOCIAL_AUTH_GOOGLE_OAUTH2_KEY</span>=<span class="hljs-number">735919351499</span>-ajre9us5dccvms36ilhrqb88ajv4ahl0.apps.googleusercontent.com
+<span class="hljs-attr">SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET</span>=I1v-sHbsogVc0jAw9M9Xy1eM
+</code></pre>
+<p>Note:Add all the ip addresses including the ip address of haproxy to ALLOWED_HOSTS in .env file and change the variables as per your needs.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="mysql.html">← Mysql Set Up</a><a class="docs-next button" href="solr.html">Solr Configuration →</a></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/docs-collaboration-system/" class="nav-home"><img src="/docs-collaboration-system/img/docusaurus.svg" alt="Collaboration System" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs-collaboration-system/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs-collaboration-system/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs-collaboration-system/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/docs-collaboration-system/en/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/" target="_blank">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank">Twitter</a></div><div><h5>More</h5><a href="/docs-collaboration-system/blog">Blog</a><a href="https://github.com/fresearchgroup">GitHub</a><a class="github-button" href="https://github.com/facebook/test-site" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://code.facebook.com/projects/" target="_blank" class="fbOpenSource"><img src="/docs-collaboration-system/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2018 Facebook Inc.</section></footer></div></body></html>

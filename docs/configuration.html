@@ -1,0 +1,65 @@
+<html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Project Configuration · Collaboration System</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="Project Configuration · Collaboration System"/><meta property="og:type" content="website"/><meta property="og:url" content="https://fresearchgroup.github.io/docs-collaboration-system/docs-collaboration-system/index.html"/><meta property="og:description" content="## Collaboration System initial configuration"/><link rel="shortcut icon" href="/docs-collaboration-system/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://fresearchgroup.github.io/docs-collaboration-system/blog/atom.xml" title="Collaboration System Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://fresearchgroup.github.io/docs-collaboration-system/blog/feed.xml" title="Collaboration System Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/docs-collaboration-system/css/main.css"/></head><body class="sideNavVisible"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/docs-collaboration-system/"><img class="logo" src="/docs-collaboration-system/img/docusaurus.svg"/><h2 class="headerTitle">Collaboration System</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li><a href="/docs-collaboration-system/docs/introduction.html" target="_self">Docs</a></li><li><a href="/docs-collaboration-system/blog" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Installation</span></h2></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Collab</h3><ul><li class="navListItem"><a class="navItem" href="/docs-collaboration-system/docs/introduction.html">Introduction</a></li></ul></div><div class="navGroup navGroupActive"><h3>Installation</h3><ul><li class="navListItem"><a class="navItem" href="/docs-collaboration-system/docs/mysql.html">Mysql Configuration</a></li><li class="navListItem"><a class="navItem" href="/docs-collaboration-system/docs/nginx.html">Nginx Configuration</a></li><li class="navListItem"><a class="navItem" href="/docs-collaboration-system/docs/solr.html">Solr Configuration</a></li><li class="navListItem"><a class="navItem" href="/docs-collaboration-system/docs/loadbalancer.html">Load Balancer Configuration</a></li><li class="navListItem"><a class="navItem" href="/docs-collaboration-system/docs/nfs.html">NFS Configuration</a></li><li class="navListItem"><a class="navItem" href="/docs-collaboration-system/docs/cache.html">Memcache Configuration</a></li><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/docs-collaboration-system/docs/configuration.html">Project Configuration</a></li></ul></div><div class="navGroup navGroupActive"><h3>Testing and Deployment</h3><ul><li class="navListItem"><a class="navItem" href="/docs-collaboration-system/docs/jenkins.html">Jenkins Set Up</a></li></ul></div></div></section></div><script>
+          var toggler = document.getElementById('navToggler');
+          var nav = document.getElementById('docsNav');
+          toggler.onclick = function() {
+            nav.classList.toggle('docsSliderActive');
+          };
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1>Project Configuration</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" name="collaboration-system-initial-configuration"></a><a href="#collaboration-system-initial-configuration" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Collaboration System initial configuration</h2>
+<p>Copy the patch file from 'temp' folder of the project to virtualenv Django -reversion compare module which has been installed in the virtual environment (collab) through requirements.txt.</p>
+<pre><code class="hljs css shell"><span class="hljs-meta">$</span><span class="bash"> sudo cp CollaborationSystem/temp/patch_for_reversion_compare.py collab/lib/python3.5/site-packages/reversion_compare/views.py</span>
+
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" name="optionalif-the-database-is-empty-or-using-a-new-database"></a><a href="#optionalif-the-database-is-empty-or-using-a-new-database" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Optional(if the database is empty or using a new database):</h2>
+<p>Run the following command inside CollaborationSystem project</p>
+<pre><code class="hljs css shell"><span class="hljs-meta">$</span><span class="bash"> python3 manage.py migrate</span>
+<span class="hljs-meta">$</span><span class="bash"> python3 manage.py loaddata workflow</span>
+<span class="hljs-meta">$</span><span class="bash"> python3 manage.py loaddata roles</span>
+<span class="hljs-meta">$</span><span class="bash"> python3 manage.py loaddata faq</span>
+
+</code></pre>
+<p>After migrations are done and all the tables are created, changes the body column in Articles tables to make it multilingual , will take symbols, unicode character etc.
+do --</p>
+<pre><code class="hljs css shell">mysql -u root -p #and select the database that was created and run the following sql query
+ALTER TABLE BasicArticle_articles MODIFY COLUMN body text CHARACTER SET utf8 COLLATE utf8_general_ci NULL;
+
+</code></pre>
+<p>Create an initial forum and set the permissions, also set the site ids
+Create a admin user --</p>
+<pre><code class="hljs css shell"><span class="hljs-meta">$</span><span class="bash"> python3 manage.py createsuperuser</span>
+
+</code></pre>
+<p>Goto - <a href="http://ipaddress/admin/">http://ipaddress/admin/</a> and use your admin user and password.</p>
+<p>Find - MACHINA: FORUM and select Forums.</p>
+<ul>
+<li><p>Create a Forum (Add Forum) --</p></li>
+<li><p>Forum type = Default Forum</p></li>
+<li><p>Name = Collaboration System</p></li>
+<li><p>Description = “The forum for ‘Collaborative Communities’ will allow individual users to discuss on  communities, topics related to communities, and thus, enhance its value for the society in terms of education.”</p></li>
+</ul>
+<p>And save the forum.</p>
+<p>Cick on GLOBAL FORUM PERMISSIONS</p>
+<ul>
+<li>Under Edit group permissions</li>
+<li>Click on the search button and select author</li>
+<li>And click on Select button</li>
+<li>Set GRANTED permission on following options
+<ul>
+<li>Can read forum</li>
+<li>Can see forum</li>
+<li>Can delete own posts</li>
+<li>Can edit own posts</li>
+<li>Can post announcements</li>
+<li>Can post stickies</li>
+<li>Can post without approval</li>
+<li>Can reply to topics</li>
+<li>Can start new topics</li>
+</ul></li>
+<li>Save the permissions</li>
+</ul>
+<p>Add Sites--</p>
+<pre><code class="hljs">Goto - http://ipaddress/admin/
+</code></pre>
+<p>Find - SITES and select Sites</p>
+<p>Add all ip addresses and domain names (one at a time).
+Keep the Domain name  and Display name same.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="cache.html">← Memcache Configuration</a><a class="docs-next button" href="jenkins.html">Jenkins Set Up →</a></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/docs-collaboration-system/" class="nav-home"><img src="/docs-collaboration-system/img/docusaurus.svg" alt="Collaboration System" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs-collaboration-system/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs-collaboration-system/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs-collaboration-system/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/docs-collaboration-system/en/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/" target="_blank">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank">Twitter</a></div><div><h5>More</h5><a href="/docs-collaboration-system/blog">Blog</a><a href="https://github.com/fresearchgroup">GitHub</a><a class="github-button" href="https://github.com/facebook/test-site" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://code.facebook.com/projects/" target="_blank" class="fbOpenSource"><img src="/docs-collaboration-system/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2018 Facebook Inc.</section></footer></div></body></html>
