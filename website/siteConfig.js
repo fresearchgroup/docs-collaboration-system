@@ -9,7 +9,7 @@
 const users = [
   {
     caption: 'User1',
-    image: '/collaboration-system/img/docusaurus.svg',
+    image: '/docs-collaboration-system/img/docusaurus.svg',
     infoLink: 'https://www.facebook.com',
     pinned: true,
   },
@@ -18,9 +18,9 @@ const users = [
 const siteConfig = {
   title: 'Collaboration System' /* title for your website */,
   tagline: 'A place to collaborate',
-  url: 'https://github.com/fresearchgroup' /* your website url */,
-  baseUrl: '/collaboration-system/' /* base url for your project */,
-  projectName: 'collaboration-system',
+  url: 'https://fresearchgroup.github.io/docs-collaboration-system' /* your website url */,
+  baseUrl: '/docs-collaboration-system/' /* base url for your project */,
+  projectName: 'docs-collaboration-system',
   headerLinks: [
     {doc: 'introduction', label: 'Docs'},
     {blog: true, label: 'Blog'},
