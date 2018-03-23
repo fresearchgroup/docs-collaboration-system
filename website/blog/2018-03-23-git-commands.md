@@ -7,7 +7,7 @@ authorFBID:
 
 Git is a version control system for tracking changes in computer files and coordinating work on those files
 
-
+<!--truncate-->
 ## Initializing a new repository -  
 ```
 $ git init
