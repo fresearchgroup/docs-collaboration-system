@@ -4,7 +4,7 @@
         <title>Collaboration System Blog</title>
         <link>https://fresearchgroup.github.io/docs-collaboration-system/docs-collaboration-system/blog</link>
         <description>The best place to stay up-to-date with the latest Collaboration System news and events.</description>
-        <lastBuildDate>Tue, 24 Oct 2017 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 23 Mar 2018 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,21 @@
             <link>https://fresearchgroup.github.io/docs-collaboration-system/docs-collaboration-system/blog</link>
         </image>
         <copyright>Copyright © 2018 Fundamental Research Group </copyright>
+        <item>
+            <title><![CDATA[Git Commands]]></title>
+            <link>https://fresearchgroup.github.io/docs-collaboration-system/docs-collaboration-system/blog/2018/03/23/git-commands.html</link>
+            <guid>https://fresearchgroup.github.io/docs-collaboration-system/docs-collaboration-system/blog/2018/03/23/git-commands.html</guid>
+            <pubDate>Fri, 23 Mar 2018 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Git is a version control system for tracking changes in computer files and coordinating work on those files</p>
+<h2><a class="anchor" aria-hidden="true" name="initializing-a-new-repository"></a><a href="#initializing-a-new-repository" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Initializing a new repository -</h2>
+<pre><code class="hljs"><span class="hljs-meta">$</span><span class="bash"> git init</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" name="add-files-to-staging-area"></a><a href="#add-files-to-staging-area" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add files to staging area</h2>
+<pre><code class="hljs">  $ git <span class="hljs-keyword">add</span><span class="bash"> &lt;filename or .&gt;
+</span></code></pre>
+<h2><a class="anchor" aria-hidden="true" name="commit-the-fil"></a><a href="#commit-the-fil" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Commit the fil</h2>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[New Version 1.0.0]]></title>
             <link>https://fresearchgroup.github.io/docs-collaboration-system/docs-collaboration-system/blog/2017/10/24/new-version-1.0.0.html</link>

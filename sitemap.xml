@@ -3,6 +3,7 @@
 <url> <loc>https://fresearchgroup.github.io/docs-collaboration-system/help.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://fresearchgroup.github.io/docs-collaboration-system/en/help.html" /> </url>
 <url> <loc>https://fresearchgroup.github.io/docs-collaboration-system/index.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://fresearchgroup.github.io/docs-collaboration-system/en/index.html" /> </url>
 <url> <loc>https://fresearchgroup.github.io/docs-collaboration-system/users.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://fresearchgroup.github.io/docs-collaboration-system/en/users.html" /> </url>
+<url> <loc>https://fresearchgroup.github.io/docs-collaboration-system/blog/2018/03/23/git-commands.html</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
 <url> <loc>https://fresearchgroup.github.io/docs-collaboration-system/blog/2017/10/24/new-version-1.0.0.html</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
 <url> <loc>https://fresearchgroup.github.io/docs-collaboration-system/blog/2017/09/26/adding-rss.html</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
 <url> <loc>https://fresearchgroup.github.io/docs-collaboration-system/blog/2017/09/25/testing-rss.html</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
