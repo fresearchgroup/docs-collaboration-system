@@ -102,3 +102,49 @@ Steps to be followed for creating a build pipeline view
 - Enter the “Remote Root Directory”.
 - In “Launch Method” select: Launch slave agents via SSH.
 - In host: specify the IP address of the host on which you want to deploy the agent.
+
+
+## Creating Allure report in Jenkins
+
+It is a test report tool that is designed to create test execution reports that are clear to everyone.
+
+## Installing allure plugin
+
+Go to ‘Manage jenkins’ -> ‘Manage plugins’ - > ‘Available’ tab
+Search ‘Allure jenkins plugin’ and install it without restart.  
+
+## Generate allure report for Collaboration System
+
+ 1.  Create  a free style project on Jenkins
+ 2. In the post build action add Allure report.
+ 3. Create a directory in the workspace ie allurerequire and paste  the following in requirements.txt of creating allure report.
+
+              arrow==0.8.0
+              colorama==0.3.7
+              enum34==1.1.6
+              lxml==3.6.0
+              moment==0.5.1
+              namedlist==1.7
+              py==1.4.31
+              pytest==2.7.3
+              pytest-allure-adaptor==1.7.7
+              pytest-gitignore==1.3
+              python-dateutil==2.5.3
+              pytz==2016.4
+              selenium==2.53.5
+              six==1.10.0
+              times==0.7
+
+
+3. In the execute shell of build action add these lines
+
+           sudo apt-get -y install libxml2-dev libxslt-dev
+           pip install -r allurerequire/requirements.txt
+           mkdir -p ./allure-results
+           export DJANGO_SETTINGS_MODULE=CollaborationSystem.settings
+           python3 -m pip install pytest pytest-allure-adaptor
+           python3 -m pytest --alluredir=./allure-results Group/tests.py Community/tests.py   BasicArticle/tests.py
+
+4.  Save and Build the project.
+
+5.   Click on the Allure report  to see the reports created.
