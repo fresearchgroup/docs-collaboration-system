@@ -12,6 +12,8 @@
     "doc3": "This is document number 3",
     "doc4": "Other Document",
     "doc5": "Fifth Document",
+    "git": "Git branching models and commands",
+    "Git Models and Commands": "Git Models and Commands",
     "introduction": "Collaborative Communities",
     "Introduction": "Introduction",
     "jenkins": "Jenkins Set Up",
@@ -31,6 +33,7 @@
     "Collab": "Collab",
     "Installation": "Installation",
     "Testing and Deployment": "Testing and Deployment",
+    "Version Control": "Version Control",
     "First Category": "First Category"
   },
   "pages-strings": {

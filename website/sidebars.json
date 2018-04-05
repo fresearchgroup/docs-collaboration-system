@@ -2,7 +2,8 @@
   "docs": {
     "Collab": ["introduction"],
     "Installation": ["mysql", "nginx", "solr", "loadbalancer", "nfs", "cache", "configuration"],
-    "Testing and Deployment": ["jenkins"]
+    "Testing and Deployment": ["jenkins"],
+    "Version Control": ["git"]
   },
   "docs-other": {
     "First Category": ["doc4", "doc5"]

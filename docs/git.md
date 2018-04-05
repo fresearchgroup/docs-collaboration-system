@@ -1,13 +1,11 @@
 ---
-title: Git Commands
-author: Abhijit Bonik
-authorURL: https://github.com/abhisgithub
-authorFBID:
+id: git
+title: Git branching models and commands
+sidebar_label: Git Models and Commands
 ---
 
 Git is a version control system for tracking changes in computer files and coordinating work on those files
 
-<!--truncate-->
 
 ## Initializing a new repository -  
 
@@ -154,6 +152,83 @@ To list the current branches -
 	$ git branch -v
 ```
 
+## Branching Models -
+
+Other than master and develop branches, there are some short live branches.These branches always have a limited lifetime, since they will be removed eventually.
+They are -
+- Feature branches
+- Release branches
+- Hotfix branches
+
+## Feature branches -
+ To create new feature branch, branch off from the develop branch.
+ ```
+		$ git checkout -b myfeature develop
+```
+
+After finishing a feature,  merged into the develop branch
+```
+	$ git checkout develop
+	$ git merge --no-ff myfeature
+	$ git branch -d myfeature
+  $ git push origin develop
+```
+
+## Release branches -
+ To create new release branches are created from the develop branch.(when the state of develop is ready for the “next release”)
+ ```
+		$ git checkout -b release-1.2 develop
+ ```
+After finishing a release branch --
+```
+	$ git checkout master
+  $ git merge --no-ff release-1.2
+  $ git tag -a 1.2
+```
+ The changes that are made in the release branch, are also  need to merge back into develop, branch.
+ ```
+	$ git checkout develop
+	$ git merge --no-ff release-1.2
+	$ git branch -d release-1.2
+```
+## Hotfix branches -
+Hotfix branches are created from the master branch
+eg:  tag 1.2 is on production release running live and causing troubles due to a severe bug. And develop is still unstable then , create a Hotfix branch and start fixing the problem:
+```
+$ git checkout -b hotfix-1.2.1 master
+```
+Make the changes needed in hotfix branch
+```
+$ git commit -m "Fixed severe production problem"
+```
+The bugfix needs to be merged back into master,
+```
+$ git checkout master
+$ git merge --no-ff hotfix-1.2.1
+$ git tag -a 1.2.1
+```
+The bugfix needs to be merged back into develop,
+```
+$ git checkout develop
+$ git merge --no-ff hotfix-1.2.1				
+$ git branch -d hotfix-1.2.1
+```
+
+## Workflow for Collaborators
+This workflow should be followed by all collaborators of the project, i.e. existing staff and RAs.
+
+Clone the repository and work in respective feature branches.
+Merge it to develop branch
+Make pull request to master branch
+
+
+## Workflow for a new comer
+The following workflow should be followed by a new comer i.e.  interns or a new joinee.
+
+Fork the repository
+Work on existing feature branch or create a feature branch of your own
+Create a pull request for develop branch
+
 ## Working with forking Repositories
  TO sync the repository with origin repo use following command
 
@@ -164,3 +239,7 @@ $ git checkout master
 $ git rebase upstream/master
 $ git push origin master
 ```
+
+For advance reading , download Pro Git
+
+https://github.com/progit/progit2/releases/download/2.1.38/progit.pdf
