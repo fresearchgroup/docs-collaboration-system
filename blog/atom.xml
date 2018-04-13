@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://fresearchgroup.github.io/docs-collaboration-system/docs-collaboration-system/blog</id>
+    <title>Collaboration System Blog</title>
+    <updated>2017-08-18T06:00:00Z</updated>
+    <generator>Feed for Node.js</generator>
+    <link rel="alternate" href="https://fresearchgroup.github.io/docs-collaboration-system/docs-collaboration-system/blog"/>
+    <subtitle>The best place to stay up-to-date with the latest Collaboration System news and events.</subtitle>
+    <logo>https://fresearchgroup.github.io/docs-collaboration-system/docs-collaboration-system/img/docusaurus.svg</logo>
+    <rights>Copyright © 2018 Fundamental Research Group </rights>
+    <entry>
+        <title type="html"/>
+        <id>https://fresearchgroup.github.io/docs-collaboration-system/docs-collaboration-system/blog/2017/08/18/readme.html</id>
+        <link href="https://fresearchgroup.github.io/docs-collaboration-system/docs-collaboration-system/blog/2017/08/18/readme.html">
+        </link>
+        <updated>2017-08-18T06:00:00Z</updated>
+        <author>
+        </author>
+    </entry>
+</feed>
