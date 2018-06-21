@@ -6,6 +6,8 @@
     "tagline": "A place to collaborate",
     "cache": "Memcache Configuration",
     "Memcache Configuration": "Memcache Configuration",
+    "collaborate": "Contributing to Collaboration System",
+    "Contributing to Collaboration System": "Contributing to Collaboration System",
     "configuration": "Project Configuration",
     "Project Configuration": "Project Configuration",
     "doc2": "document number 2",
@@ -38,6 +40,7 @@
     "Installation": "Installation",
     "Testing and Deployment": "Testing and Deployment",
     "Version Control": "Version Control",
+    "Contribute": "Contribute",
     "First Category": "First Category"
   },
   "pages-strings": {
