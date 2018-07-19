@@ -2,6 +2,7 @@
   "docs": {
     "Collab": ["introduction"],
     "Installation": ["mysql", "nginx", "solr", "loadbalancer", "nfs", "cache", "configuration"],
+    "Developer Installation": ["devarchitecture", "devinstallationdocker"],
     "Testing and Deployment": ["jenkins", "docker"],
     "Version Control": ["git"],
     "Inappropriate Content Filter": ["inappropriatecontentfilter"],
