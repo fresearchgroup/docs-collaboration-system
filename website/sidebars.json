@@ -1,8 +1,8 @@
 {
   "docs": {
-    "Collab": ["introduction"],
-    "Installation": ["mysql", "nginx", "solr", "loadbalancer", "nfs", "cache", "configuration"],
-    "Developer Installation": ["devarchitecture", "devinstallationdocker"],
+    "Collab": ["introduction","devarchitecture"],
+    "Deployment Installation": ["mysql", "h5pVE", "etherpadVE", "elkVE", "nginx", "dependencyConfigurationVE", "cache", "loadbalancer", "nfs", "configuration", "solr"],
+    "Developer Installation": ["devinstallationdocker","h5pDevDocker","etherpadDevDocker","elkDevDocker","recommendationDevDocker","projectConfDevDocker", "startcollabDevDocker","checkDevDocker"],
     "Testing and Deployment": ["jenkins", "docker"],
     "Version Control": ["git"],
     "Inappropriate Content Filter": ["inappropriatecontentfilter"],
