@@ -24,8 +24,6 @@ $ pip3 install -r CollaborationSystem/requirements.txt
 $ django-admin --version      ( Check django version --  1.11.7)
 $ pip3 install gunicorn
 $ pip3 install psycopg2
-
-
 ```
 
 Define Static URL in project.
@@ -38,8 +36,6 @@ STATIC_ROOT = "/home/edx/static"
 cd CollaborationSystem
 $ python manage.py collectstatic
 cd
-
-
 ```
 
 ## Configure Gunicorn -
@@ -95,7 +91,6 @@ $ chmod u+x gunicorn_start.bash
 $ mkdir run logs
 $ touch logs/gunicorn.log
 $ sudo nano /etc/supervisor/conf.d/edx.conf
-
 ```
 
 Add the following to edx.conf -
@@ -109,7 +104,6 @@ autorestart=true
 redirect_stderr=true
 stdout_logfile=/home/edx/logs/gunicorn.log
 environment=LANG=en_US.UTF-8,LC_ALL=en_US.UTF-8
-
 ```
 
 Restart Services -
@@ -118,7 +112,6 @@ Restart Services -
 $ sudo systemctl restart supervisor
 $ sudo systemctl enable supervisor
 $ sudo supervisorctl status edx
-
 ```
 
 Open the file gunicorn.service  -
@@ -126,10 +119,8 @@ Open the file gunicorn.service  -
 
 ```shell
 $ sudo nano /etc/systemd/system/gunicorn.service
-
 ```
 Add the folllowing -
-
 ```
 [Unit]
 Description=gunicorn daemon
@@ -143,7 +134,6 @@ ExecStart=/home/edx/collab/bin/gunicorn --access-logfile - --workers 3 --bind un
 
 [Install]
 WantedBy=multi-user.target
-
 ```
 
 Start Gunicorn -
@@ -152,14 +142,12 @@ Start Gunicorn -
 $ sudo systemctl start gunicorn
 $ sudo systemctl enable gunicorn
 $ sudo systemctl status gunicorn
-
 ```
 
 Add the following to edx.conf file and change the server_name ip address
 
 ```shell
 $ sudo nano /etc/nginx/sites-available/edx.conf
-
 ```
 ```
 server {
@@ -184,7 +172,6 @@ server {
         proxy_pass http://unix:/home/edx/run/gunicorn.sock;
     }
 }
-
 ```
 
 Create symbolic link and restart-
@@ -198,29 +185,11 @@ $ sudo systemctl restart nginx
 $ sudo supervisorctl restart edx
 $ sudo service gunicorn restart
 $ sudo service supervisor restart
-
 ```
-Create a .env inside CollaborationSystem and paste the following -
+Copy a .env.example inside CollaborationSystem
 ```shell
-$ sudo nano CollaborationSystem/.env
+$ cd CollaborationSystem
+$ cp .env.example .env
 ```
-```
-SECRET_KEY=myf0)*es+lr_3l0i5$4^)^fb&4rcf(m28zven+oxkd6!(6gr*6
-DEBUG=True
-DB_NAME=django
-DB_USER=root
-DB_PASSWORD=root
-DB_HOST=localhost
-DB_PORT=3306
-ALLOWED_HOSTS= localhost, 10.129.132.103
-GOOGLE_RECAPTCHA_SECRET_KEY=6Lfsk0MUAAAAAFdhF-dAY-iTEpWaaCFWAc1tkqjK
-EMAIL_HOST=localhost
-EMAIL_HOST_USER=
-EMAIL_HOST_PASSWORD=
-EMAIL_PORT=25
-EMAIL_USE_TLS=False
-DEFAULT_FROM_EMAIL=collaboratingcommunity@cse.iitb.ac.in
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY=735919351499-ajre9us5dccvms36ilhrqb88ajv4ahl0.apps.googleusercontent.com
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET=I1v-sHbsogVc0jAw9M9Xy1eM
-```
+
 Note:Add all the ip addresses including the ip address of haproxy to ALLOWED_HOSTS in .env file and change the variables as per your needs.

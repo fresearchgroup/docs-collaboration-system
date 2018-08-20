@@ -4,13 +4,36 @@ title: Project Configuration
 sidebar_label: Project Configuration
 ---
 
-## Collaboration System initial configuration
+## Apply Patches
 
-Copy the patch file from 'temp' folder of the project to virtualenv Django -reversion compare module which has been installed in the virtual environment (collab) through requirements.txt.
+Copy the patch files from 'temp' folder of the project to virtualenv Django
 
 ```shell
-$ sudo cp CollaborationSystem/temp/patch_for_reversion_compare.py collab/lib/python3.5/site-packages/reversion_compare/views.py
+$ cd CollaborationSystem
+```
+### Django-Reversion Compare
+```shell
+$ cp temp/patch_for_reversion_compare.py collab/lib/python3.5/site-packages/reversion_compare/views.py
+```
 
+### Machina (Discussion Forum)
+```shell
+$ cp temp/board_base.html collab/lib/python3.5/site-packages/machina/templates/machina/board_base.html
+```
+### Django-Notifications
+```shell
+$ cp temp/notifications/models.py collab/lib/python3.5/site-packages/notifications/models.py
+$ cp temp/notifications/urls.py collab/lib/python3.5/site-packages/notifications/urls.py
+$ cp temp/notifications/views.py collab/lib/python3.5/site-packages/notifications/views.py
+$ cp temp/notifications/notifications_tags.py collab/lib/python3.5/site-packages/notifications/templatetags/notifications_tags.py
+$ cp temp/notifications/list.html collab/lib/python3.5/site-packages/notifications/templates/notifications/list.html
+$ cp temp/notifications/settings.py collab/lib/python3.5/site-packages/notifications/settings.py
+```
+### Django-Wiki
+```shell
+$ cp temp/base_wiki.html collab/lib/python3.5/site-packages/wiki/templates/wiki/base.html
+$ cp temp/article_menu_wiki.html collab/lib/python3.5/site-packages/wiki/templates/wiki/includes/article_menu.html
+$ cp temp/article_wiki.html collab/lib/python3.5/site-packages/wiki/templates/wiki/article.html
 ```
 
 
